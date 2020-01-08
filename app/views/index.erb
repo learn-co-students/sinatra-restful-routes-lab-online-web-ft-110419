@@ -1,0 +1,30 @@
+
+<html>
+	<body>
+		<h2>Recipes:</h2>
+		<% if @recipes.length > 0 %>
+		<% @recipes.each do |recipe| %>
+			<p>Name: <%= recipe.name %></p>
+			<p>Ingredients: <%= recipe.ingredients %></p>
+			<p>Cook Time: <%= recipe.cook_time %></p>
+			<p><a href = '/recipes/<%= recipe.id %>'>Show More Details</a></p>
+			<form method = "POST" action = "/recipes/<%= recipe.id %>">
+				<input type = "hidden" id = "hidden" name = "_method" value = "DELETE">
+				<input type = "submit" value ="delete" id = "delete">
+			</form>
+		<% end %>
+		<% else %>
+			<%= "There are no recipes yet – add one!" %>
+ 		<% end %>
+
+		<h2>Add a New Recipe</h2>
+
+		<form method = "POST" action = '/recipes'>
+			<p>Name of Recipe: <input type = "text" name = "name" id= "name"></p>
+			<p>Ingredients: <input type="text" name="ingredients" id= "ingredients"></p>
+			<p>Cook Time: <input type="text" name="cook_time" id = "cook_time"></p>
+			<input type = "submit" id= "submit">
+		</form>
+	</body>
+</html>
+
